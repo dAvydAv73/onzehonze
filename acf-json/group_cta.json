@@ -1,0 +1,31 @@
+{
+  "key": "group_cta",
+  "title": "CTA (simple)",
+  "fields": [
+    {
+      "key": "field_cta_text",
+      "label": "Label du bouton",
+      "name": "cta_text",
+      "type": "text",
+      "required": 0,
+      "default_value": "Prendre rendez-vous",
+      "wrapper": { "width": "50" }
+    },
+    {
+      "key": "field_cta_link",
+      "label": "Lien",
+      "name": "cta_link",
+      "type": "link",
+      "return_format": "array",
+      "required": 0,
+      "wrapper": { "width": "50" }
+    }
+  ],
+  "location": [
+    [ { "param": "post_type", "operator": "==", "value": "page" } ]
+  ],
+  "active": false,
+  "description": "Groupe clonable pour un CTA (texte + lien).",
+  "show_in_rest": 0,
+  "modified": 1760951900
+}

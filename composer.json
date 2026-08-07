@@ -1,0 +1,12 @@
+{
+  "name": "onzehonze/theme",
+  "description": "Thème Timber minimal Onzehonze",
+  "require": {
+    "timber/timber": "^2.0"
+  },
+  "config": {
+    "allow-plugins": {
+      "composer/installers": true
+    }
+  }
+}

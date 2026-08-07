@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html {{ site.language_attributes }}>
+<head>
+  <meta charset="{{ site.charset }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="profile" href="https://gmpg.org/xfn/11">
+  {{ function('wp_head') }}
+</head>
+<body class="{{ body_class }} font-sans text-brand-nuit antialiased">
+  {{ function('wp_body_open') }}
+
+  {% include 'partials/header.twig' %}
+
+  <main id="content">
+    {% block content %}{% endblock %}
+  </main>
+
+  {% include 'partials/footer.twig' %}
+
+  {{ function('wp_footer') }}
+</body>
+</html>

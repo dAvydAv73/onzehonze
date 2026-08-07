@@ -1,0 +1,87 @@
+{
+  "key": "group_hero_split",
+  "title": "Bloc – Hero (Split)",
+  "fields": [
+    {
+      "key": "herosplit_field_eyebrow",
+      "label": "Sur-titre (eyebrow)",
+      "name": "eyebrow",
+      "type": "text",
+      "required": 0,
+      "wrapper": { "width": "50" }
+    },
+    {
+      "key": "herosplit_field_bg_color",
+      "label": "Couleur de fond",
+      "name": "bg_color",
+      "type": "color_picker",
+      "default_value": "#FAEAD6",
+      "wrapper": { "width": "25" }
+    },
+    {
+      "key": "herosplit_field_text_contrast",
+      "label": "Contraste du texte",
+      "name": "text_contrast",
+      "type": "select",
+      "choices": { "dark": "Foncé", "light": "Clair" },
+      "default_value": "dark",
+      "return_format": "value",
+      "wrapper": { "width": "25" }
+    },
+    {
+      "key": "herosplit_field_title",
+      "label": "Titre",
+      "name": "title",
+      "type": "text",
+      "required": 1
+    },
+    {
+      "key": "herosplit_field_text",
+      "label": "Texte d’introduction",
+      "name": "text",
+      "type": "wysiwyg",
+      "tabs": "visual",
+      "toolbar": "basic",
+      "media_upload": 0,
+      "required": 0
+    },
+    {
+      "key": "herosplit_field_image",
+      "label": "Visuel (droite)",
+      "name": "image",
+      "type": "image",
+      "return_format": "array",
+      "preview_size": "large",
+      "required": 0
+    },
+    {
+      "key": "herosplit_field_cta_primary",
+      "label": "CTA principal",
+      "name": "cta_primary",
+      "type": "clone",
+      "clone": [ "group_cta" ],
+      "display": "group",
+      "layout": "block",
+      "prefix_name": 1,
+      "required": 0
+    },
+    {
+      "key": "herosplit_field_cta_secondary",
+      "label": "CTA secondaire",
+      "name": "cta_secondary",
+      "type": "clone",
+      "clone": [ "group_cta" ],
+      "display": "group",
+      "layout": "block",
+      "prefix_name": 1,
+      "required": 0
+    }
+  ],
+  "location": [
+    [ { "param": "block", "operator": "==", "value": "acf/hero-split" } ]
+  ],
+  "active": true,
+  "description": "Hero split : eyebrow, titre, texte, 2 CTA (clone), visuel à droite.",
+  "show_in_rest": 0,
+  "modified": 1760951900
+}

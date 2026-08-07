@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* --------------------------------------------------------------------------
+   Animations légères — pilotées par assets/js/reveal.js (IntersectionObserver)
+   Réutilise les attributs data-reveal-* (compatibles avec le hero-split).
+   -------------------------------------------------------------------------- */
+@layer utilities {
+  .js-reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity .7s ease-out, transform .7s ease-out;
+    will-change: opacity, transform;
+  }
+  .js-reveal[data-reveal-from="left"]  { transform: translateX(-24px); }
+  .js-reveal[data-reveal-from="right"] { transform: translateX(24px); }
+  .js-reveal[data-reveal-from="up"]    { transform: translateY(-24px); }
+
+  .js-reveal.is-visible {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+
+  /* Respecte les préférences d'accessibilité : aucun mouvement imposé */
+  @media (prefers-reduced-motion: reduce) {
+    .js-reveal {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
+  }
+}

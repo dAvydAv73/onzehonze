@@ -1,0 +1,15 @@
+<footer class="w-full bg-brand-nuit text-white mt-16">
+  <div class="max-w-7xl mx-auto px-4 md:px-6 py-12 flex flex-col md:flex-row items-center justify-between gap-6">
+    <p class="text-sm opacity-80">© {{ "now"|date("Y") }} {{ site.name }}</p>
+
+    {% if menu_footer %}
+      <nav>
+        <ul class="flex items-center gap-6">
+          {% for item in menu_footer.items %}
+            <li><a href="{{ item.link }}" class="text-sm opacity-80 hover:opacity-100 transition-opacity">{{ item.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </nav>
+    {% endif %}
+  </div>
+</footer>

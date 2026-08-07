@@ -1,0 +1,54 @@
+{# views/blocks/hero-split.twig
+   Bloc Hero – Split with image (PDF Home #1).
+   Texte + 2 CTA à gauche, visuel à droite. Animations via data-reveal-*.
+#}
+{% set f = fields ?? {} %}
+{% set tone = f.text_contrast|default('dark') %}
+{% set textClass = tone == 'light' ? 'text-white' : 'text-brand-nuit' %}
+{% set bg_color = f.bg_color|default('#FAEAD6') %}
+
+<section id="{{ block.anchor ?? block_id }}"
+         class="relative overflow-hidden {{ block_classes }}"
+         style="background-color: {{ bg_color }};">
+  <div class="max-w-7xl mx-auto px-4 md:px-6 py-16 md:py-24">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center {{ textClass }}">
+
+      {# Colonne texte #}
+      <div class="w-full">
+        {% if f.eyebrow %}
+          <p class="text-sm font-semibold uppercase tracking-wide text-brand-rouge mb-4 js-reveal"
+             data-reveal-from="left">{{ f.eyebrow }}</p>
+        {% endif %}
+
+        {% if f.title %}
+          <h1 class="text-4xl md:text-5xl font-semibold leading-tight mb-6 js-reveal"
+              data-reveal-from="left" data-reveal-delay="0.05">{{ f.title }}</h1>
+        {% endif %}
+
+        {% if f.text %}
+          <div class="prose max-w-none {{ tone == 'light' ? 'prose-invert' : '' }} mb-8 js-reveal"
+               data-reveal-from="left" data-reveal-delay="0.1">{{ f.text }}</div>
+        {% endif %}
+
+        {% if (f.cta_primary and f.cta_primary.cta_text) or (f.cta_secondary and f.cta_secondary.cta_text) %}
+          <div class="flex flex-wrap items-center gap-4 js-reveal" data-reveal-from="left" data-reveal-delay="0.15">
+            {% include 'partials/button.twig' with { cta: f.cta_primary,   variant: 'filled'  } %}
+            {% include 'partials/button.twig' with { cta: f.cta_secondary, variant: 'outline' } %}
+          </div>
+        {% endif %}
+      </div>
+
+      {# Colonne visuel #}
+      <div class="w-full">
+        {% if f.image and f.image.url %}
+          <figure class="rounded-2xl overflow-hidden shadow-xl js-reveal"
+                  data-reveal-from="right" data-reveal-delay="0.05">
+            <img src="{{ f.image.url }}" alt="{{ f.image.alt ?? '' }}"
+                 class="w-full h-auto object-cover" loading="eager" fetchpriority="high" />
+          </figure>
+        {% endif %}
+      </div>
+
+    </div>
+  </div>
+</section>

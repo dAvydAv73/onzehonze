@@ -1,0 +1,22 @@
+<header class="w-full border-b border-brand-beige">
+  <div class="max-w-7xl mx-auto px-4 md:px-6 h-16 flex items-center justify-between">
+    <a href="{{ site.url }}" class="font-semibold text-lg text-brand-nuit">
+      {{ site.name }}
+    </a>
+
+    {% if menu %}
+      <nav class="hidden md:block">
+        <ul class="flex items-center gap-6">
+          {% for item in menu.items %}
+            <li>
+              <a href="{{ item.link }}"
+                 class="text-sm text-brand-nuit hover:text-brand-rouge transition-colors {{ item.current ? 'text-brand-rouge' : '' }}">
+                {{ item.title }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </nav>
+    {% endif %}
+  </div>
+</header>

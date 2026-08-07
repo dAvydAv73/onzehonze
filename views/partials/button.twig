@@ -1,0 +1,25 @@
+{# views/partials/button.twig
+   Bouton simple. Variantes : 'filled' (rouge charte) ou 'outline'.
+   Usage : {% include 'partials/button.twig' with { cta: f.cta_primary, variant: 'filled' } %}
+   cta = groupe cloné group_cta (cta_text + cta_link).
+#}
+{% set variant = variant|default('filled') %}
+{% set link = cta.cta_link ?? null %}
+{% set href = link is iterable ? (link.url ?? null) : (link ?? null) %}
+{% set target = link is iterable ? (link.target ?? null) : null %}
+
+{% if cta and cta.cta_text %}
+  {% set base = 'inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-all duration-200' %}
+  {% set skin = variant == 'outline'
+      ? 'border border-brand-nuit/20 text-brand-nuit hover:border-brand-rouge hover:text-brand-rouge'
+      : 'bg-brand-rouge text-white hover:bg-brand-nuit' %}
+
+  <a href="{{ href ?? '#' }}"
+     class="{{ base }} {{ skin }}"
+     {% if target == '_blank' %}target="_blank" rel="noopener noreferrer"{% endif %}>
+    <span>{{ cta.cta_text }}</span>
+    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </a>
+{% endif %}

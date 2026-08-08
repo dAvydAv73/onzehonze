@@ -40,18 +40,20 @@
       "label": "Texte d’introduction",
       "name": "text",
       "type": "wysiwyg",
-      "tabs": "visual",
-      "toolbar": "basic",
+      "instructions": "Onglet « Visuel » pour l’édition simple, onglet « Texte » pour écrire du HTML.",
+      "tabs": "all",
+      "toolbar": "full",
       "media_upload": 0,
       "required": 0
     },
     {
       "key": "herosplit_field_image",
-      "label": "Visuel (droite)",
+      "label": "Visuel (background droite)",
       "name": "image",
       "type": "image",
       "return_format": "array",
       "preview_size": "large",
+      "instructions": "Affichée en fond sur la moitié droite (desktop), avec fondu vers la couleur de fond.",
       "required": 0
     },
     {
@@ -75,13 +77,60 @@
       "layout": "block",
       "prefix_name": 1,
       "required": 0
+    },
+    {
+      "key": "herosplit_field_hero_items",
+      "label": "Points forts (3 max, icône + texte)",
+      "name": "hero_items",
+      "type": "repeater",
+      "layout": "table",
+      "min": 0,
+      "max": 3,
+      "button_label": "Ajouter un point",
+      "sub_fields": [
+        {
+          "key": "herosplit_field_item_icon",
+          "label": "Icône",
+          "name": "icon",
+          "type": "select",
+          "ui": 1,
+          "allow_null": 1,
+          "return_format": "value",
+          "choices": {
+            "magnifying-glass": "Loupe (SEO / analyse)",
+            "chart-bar": "Barres (data)",
+            "presentation-chart-line": "Courbe (résultats)",
+            "arrow-trending-up": "Tendance ↑ (croissance)",
+            "users": "Utilisateurs (audience)",
+            "user": "Utilisateur (indépendant)",
+            "flag": "Drapeau (objectif)",
+            "sparkles": "Étincelles (impact)",
+            "light-bulb": "Ampoule (idée)",
+            "rocket-launch": "Fusée (lancement)",
+            "check-circle": "Coche (validé)",
+            "check-badge": "Badge (garantie)",
+            "map": "Carte (méthode)",
+            "megaphone": "Mégaphone (acquisition)",
+            "shopping-bag": "Sac (e-commerce)",
+            "building-office": "Bâtiment (entreprise)"
+          },
+          "wrapper": { "width": "40" }
+        },
+        {
+          "key": "herosplit_field_item_text",
+          "label": "Texte",
+          "name": "text",
+          "type": "text",
+          "wrapper": { "width": "60" }
+        }
+      ]
     }
   ],
   "location": [
     [ { "param": "block", "operator": "==", "value": "acf/hero-split" } ]
   ],
   "active": true,
-  "description": "Hero split : eyebrow, titre, texte, 2 CTA (clone), visuel à droite.",
+  "description": "Hero split : eyebrow, titre, texte HTML, 2 CTA, image de fond droite, 3 points forts.",
   "show_in_rest": 0,
-  "modified": 1760951900
+  "modified": 1760970000
 }

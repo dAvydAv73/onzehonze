@@ -1,54 +1,77 @@
 {# views/blocks/hero-split.twig
-   Bloc Hero – Split with image (PDF Home #1).
-   Texte + 2 CTA à gauche, visuel à droite. Animations via data-reveal-*.
+   Hero – Split (Onzehonze).
+   Desktop : texte dans le container (moitié gauche) + image en background full-bleed
+   sur la moitié droite de la PAGE, pleine hauteur, avec fondu progressif vers le fond.
+   Mobile : image affichée dans le flux, sous le texte.
 #}
 {% set f = fields ?? {} %}
+{% import 'partials/icon.twig' as ui %}
+
 {% set tone = f.text_contrast|default('dark') %}
 {% set textClass = tone == 'light' ? 'text-white' : 'text-brand-nuit' %}
 {% set bg_color = f.bg_color|default('#FAEAD6') %}
+{% set img = f.image ?? null %}
 
 <section id="{{ block.anchor ?? block_id }}"
-         class="relative overflow-hidden {{ block_classes }}"
+         class="relative overflow-hidden {{ block_classes }} lg:min-h-[600px] flex items-center"
          style="background-color: {{ bg_color }};">
-  <div class="max-w-7xl mx-auto px-4 md:px-6 py-16 md:py-24">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center {{ textClass }}">
 
-      {# Colonne texte #}
-      <div class="w-full">
-        {% if f.eyebrow %}
-          <p class="text-sm font-semibold uppercase tracking-wide text-brand-rouge mb-4 js-reveal"
-             data-reveal-from="left">{{ f.eyebrow }}</p>
-        {% endif %}
+  {# Image background (desktop) : moitié droite de la page, pleine hauteur #}
+  {% if img and img.url %}
+    <div class="hidden lg:block absolute inset-y-0 right-0 w-1/2 bg-cover bg-center"
+         style="background-image: url('{{ img.url }}');" role="img"
+         aria-label="{{ img.alt ?? '' }}"></div>
+    {# Fondu progressif : le fond (bg_color) part plein à gauche et devient transparent (…00 = alpha 0) #}
+    <div class="hidden lg:block absolute inset-y-0 right-0 w-1/2 pointer-events-none"
+         style="background-image: linear-gradient(to right, {{ bg_color }} 0%, {{ bg_color }}00 55%);"></div>
+  {% endif %}
 
-        {% if f.title %}
-          <h1 class="text-4xl md:text-5xl font-semibold leading-tight mb-6 js-reveal"
-              data-reveal-from="left" data-reveal-delay="0.05">{{ f.title }}</h1>
-        {% endif %}
+  <div class="relative w-full max-w-7xl mx-auto px-4 md:px-6 py-16 md:py-24">
+    <div class="lg:w-1/2 lg:pr-10 {{ textClass }}">
 
-        {% if f.text %}
-          <div class="prose max-w-none {{ tone == 'light' ? 'prose-invert' : '' }} mb-8 js-reveal"
-               data-reveal-from="left" data-reveal-delay="0.1">{{ f.text }}</div>
-        {% endif %}
+      {% if f.eyebrow %}
+        <p class="text-sm font-semibold uppercase tracking-wide text-brand-rouge mb-4 js-reveal"
+           data-reveal-from="left">{{ f.eyebrow }}</p>
+      {% endif %}
 
-        {% if (f.cta_primary and f.cta_primary.cta_text) or (f.cta_secondary and f.cta_secondary.cta_text) %}
-          <div class="flex flex-wrap items-center gap-4 js-reveal" data-reveal-from="left" data-reveal-delay="0.15">
-            {% include 'partials/button.twig' with { cta: f.cta_primary,   variant: 'filled'  } %}
-            {% include 'partials/button.twig' with { cta: f.cta_secondary, variant: 'outline' } %}
-          </div>
-        {% endif %}
-      </div>
+      {% if f.title %}
+        <h1 class="text-4xl md:text-5xl font-semibold leading-tight mb-6 js-reveal"
+            data-reveal-from="left" data-reveal-delay="0.05">{{ f.title }}</h1>
+      {% endif %}
 
-      {# Colonne visuel #}
-      <div class="w-full">
-        {% if f.image and f.image.url %}
-          <figure class="rounded-2xl overflow-hidden shadow-xl js-reveal"
-                  data-reveal-from="right" data-reveal-delay="0.05">
-            <img src="{{ f.image.url }}" alt="{{ f.image.alt ?? '' }}"
-                 class="w-full h-auto object-cover" loading="eager" fetchpriority="high" />
-          </figure>
-        {% endif %}
-      </div>
+      {% if f.text %}
+        <div class="prose max-w-none {{ tone == 'light' ? 'prose-invert' : '' }} mb-8 js-reveal"
+             data-reveal-from="left" data-reveal-delay="0.1">{{ f.text }}</div>
+      {% endif %}
+
+      {% if (f.cta_primary and f.cta_primary.cta_text) or (f.cta_secondary and f.cta_secondary.cta_text) %}
+        <div class="flex flex-wrap items-center gap-4 js-reveal" data-reveal-from="left" data-reveal-delay="0.15">
+          {% include 'partials/button.twig' with { cta: f.cta_primary,   variant: 'filled'  } %}
+          {% include 'partials/button.twig' with { cta: f.cta_secondary, variant: 'outline' } %}
+        </div>
+      {% endif %}
+
+      {# Rangée de 3 items (icône + texte) #}
+      {% if f.hero_items %}
+        <div class="mt-10 flex flex-wrap gap-x-8 gap-y-4 js-reveal" data-reveal-from="left" data-reveal-delay="0.2">
+          {% for item in f.hero_items %}
+            <div class="flex items-center gap-2 text-sm font-medium {{ textClass }}">
+              {% if item.icon %}{{ ui.icon(item.icon, 'w-5 h-5 text-brand-rouge shrink-0') }}{% endif %}
+              <span>{{ item.text }}</span>
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
 
     </div>
   </div>
+
+  {# Image dans le flux (mobile uniquement) #}
+  {% if img and img.url %}
+    <div class="lg:hidden px-4 pb-10 -mt-6">
+      <img src="{{ img.url }}" alt="{{ img.alt ?? '' }}"
+           class="w-full h-56 object-cover rounded-lg js-reveal"
+           data-reveal-from="up" loading="lazy" />
+    </div>
+  {% endif %}
 </section>

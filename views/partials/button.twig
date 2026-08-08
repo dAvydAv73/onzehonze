@@ -9,7 +9,7 @@
 {% set target = link is iterable ? (link.target ?? null) : null %}
 
 {% if cta and cta.cta_text %}
-  {% set base = 'inline-flex items-center gap-2 rounded-sm px-6 py-3 text-sm font-semibold transition-all duration-200' %}
+  {% set base = 'inline-flex items-center gap-2 rounded-md px-6 py-3 text-sm font-semibold transition-all duration-200' %}
   {% set skin = variant == 'outline'
       ? 'border border-brand-nuit/20 text-brand-nuit hover:border-brand-rouge hover:text-brand-rouge'
       : 'bg-brand-rouge text-white hover:bg-brand-nuit' %}

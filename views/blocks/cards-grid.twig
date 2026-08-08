@@ -1,0 +1,74 @@
+{# views/blocks/cards-grid.twig
+   Grille de cartes (Problématique / Services / Valeurs).
+   En-tête : sous-titre + titre centrés. Répéteur : icône + couleur, titre, contenu, lien optionnel.
+#}
+{% set f = fields ?? {} %}
+{% import 'partials/icon.twig' as ui %}
+
+{% set bg_color = f.bg_color|default('#ffffff') %}
+{% set cols = f.columns|default('3') %}
+{% set colClass = {
+  '2': 'lg:grid-cols-2',
+  '3': 'lg:grid-cols-3',
+  '4': 'lg:grid-cols-4',
+  '5': 'lg:grid-cols-5'
+}[cols]|default('lg:grid-cols-3') %}
+
+<section id="{{ block.anchor ?? block_id }}"
+         class="relative {{ block_classes }}"
+         style="background-color: {{ bg_color }};">
+  <div class="max-w-7xl mx-auto px-4 md:px-6 py-16 md:py-24">
+
+    {# --- En-tête --- #}
+    {% if f.eyebrow %}
+      <p class="text-sm font-semibold uppercase tracking-wide text-brand-rouge text-center mb-3 js-reveal"
+         data-reveal-from="up">{{ f.eyebrow }}</p>
+    {% endif %}
+
+    {% if f.title %}
+      <h2 class="text-3xl md:text-4xl font-semibold text-center text-brand-nuit max-w-2xl mx-auto js-reveal"
+          data-reveal-from="up" data-reveal-delay="0.05">{{ f.title }}</h2>
+      <div class="w-12 h-0.5 bg-brand-rouge mx-auto mt-5 mb-12"></div>
+    {% endif %}
+
+    {# --- Grille de cartes --- #}
+    {% if f.cards %}
+      <div class="grid grid-cols-1 sm:grid-cols-2 {{ colClass }} gap-6">
+        {% for card in f.cards %}
+          {% set cardColor = card.icon_color|default('#5C7B78') %}
+          <div class="flex flex-col items-center text-center bg-white border border-neutral-200 rounded-lg p-6 js-reveal"
+               data-reveal-from="up" data-reveal-delay="{{ (loop.index0 * 0.08)|round(2) }}">
+
+            {% if card.icon %}
+              <div class="w-14 h-14 rounded-full flex items-center justify-center mb-5 shrink-0"
+                   style="background-color: {{ cardColor }};">
+                {{ ui.icon(card.icon, 'w-7 h-7 text-white') }}
+              </div>
+            {% endif %}
+
+            {% if card.title %}
+              <h3 class="text-base font-semibold text-brand-nuit mb-2">{{ card.title }}</h3>
+            {% endif %}
+
+            {% if card.content %}
+              <p class="text-sm text-neutral-600 leading-relaxed">{{ card.content|nl2br }}</p>
+            {% endif %}
+
+            {% if card.link and card.link.url %}
+              <a href="{{ card.link.url }}"
+                 {% if card.link.target %}target="{{ card.link.target }}" rel="noopener noreferrer"{% endif %}
+                 class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-brand-rouge hover:text-brand-nuit transition-colors">
+                {{ card.link.title ?: 'En savoir plus' }}
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+            {% endif %}
+
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+  </div>
+</section>

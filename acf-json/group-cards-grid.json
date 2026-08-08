@@ -1,0 +1,116 @@
+{
+  "key": "group_cards_grid",
+  "title": "Bloc – Cartes (Grille)",
+  "fields": [
+    {
+      "key": "cardsgrid_field_eyebrow",
+      "label": "Sous-titre (eyebrow)",
+      "name": "eyebrow",
+      "type": "text",
+      "required": 0,
+      "wrapper": { "width": "50" }
+    },
+    {
+      "key": "cardsgrid_field_bg_color",
+      "label": "Couleur de fond",
+      "name": "bg_color",
+      "type": "color_picker",
+      "default_value": "#ffffff",
+      "wrapper": { "width": "25" }
+    },
+    {
+      "key": "cardsgrid_field_columns",
+      "label": "Colonnes (desktop)",
+      "name": "columns",
+      "type": "select",
+      "choices": { "2": "2", "3": "3", "4": "4", "5": "5" },
+      "default_value": "3",
+      "return_format": "value",
+      "wrapper": { "width": "25" }
+    },
+    {
+      "key": "cardsgrid_field_title",
+      "label": "Titre",
+      "name": "title",
+      "type": "text",
+      "required": 0
+    },
+    {
+      "key": "cardsgrid_field_cards",
+      "label": "Cartes",
+      "name": "cards",
+      "type": "repeater",
+      "layout": "block",
+      "min": 0,
+      "button_label": "Ajouter une carte",
+      "sub_fields": [
+        {
+          "key": "cardsgrid_field_card_icon",
+          "label": "Icône",
+          "name": "icon",
+          "type": "select",
+          "ui": 1,
+          "allow_null": 1,
+          "return_format": "value",
+          "choices": {
+            "magnifying-glass": "Loupe (SEO / analyse)",
+            "chart-bar": "Barres (data)",
+            "presentation-chart-line": "Courbe (résultats)",
+            "arrow-trending-up": "Tendance ↑ (croissance)",
+            "users": "Utilisateurs (audience)",
+            "user": "Utilisateur (indépendant)",
+            "flag": "Drapeau (objectif)",
+            "sparkles": "Étincelles (impact)",
+            "light-bulb": "Ampoule (idée)",
+            "rocket-launch": "Fusée (lancement)",
+            "check-circle": "Coche (validé)",
+            "check-badge": "Badge (garantie)",
+            "map": "Carte (méthode)",
+            "megaphone": "Mégaphone (acquisition)",
+            "shopping-bag": "Sac (e-commerce)",
+            "building-office": "Bâtiment (entreprise)"
+          },
+          "wrapper": { "width": "30" }
+        },
+        {
+          "key": "cardsgrid_field_card_color",
+          "label": "Couleur de l’icône",
+          "name": "icon_color",
+          "type": "color_picker",
+          "default_value": "#5C7B78",
+          "wrapper": { "width": "20" }
+        },
+        {
+          "key": "cardsgrid_field_card_title",
+          "label": "Titre",
+          "name": "title",
+          "type": "text",
+          "wrapper": { "width": "50" }
+        },
+        {
+          "key": "cardsgrid_field_card_content",
+          "label": "Contenu",
+          "name": "content",
+          "type": "textarea",
+          "rows": 3,
+          "new_lines": ""
+        },
+        {
+          "key": "cardsgrid_field_card_link",
+          "label": "Lien (optionnel)",
+          "name": "link",
+          "type": "link",
+          "return_format": "array",
+          "instructions": "Ajoute un lien « En savoir plus » sous la carte. Laisse vide pour ne rien afficher."
+        }
+      ]
+    }
+  ],
+  "location": [
+    [ { "param": "block", "operator": "==", "value": "acf/cards-grid" } ]
+  ],
+  "active": true,
+  "description": "Sous-titre + titre + grille de cartes (icône, couleur, titre, contenu, lien optionnel).",
+  "show_in_rest": 0,
+  "modified": 1760975000
+}

@@ -71,9 +71,17 @@ onzehonze_register_block([
   'twig'        => 'blocks/hero-split.twig',
 ]);
 
+onzehonze_register_block([
+  'name'        => 'cards-grid',
+  'title'       => 'Cartes – Grille',
+  'description' => 'Sous-titre + titre + grille de cartes (icône, couleur, titre, contenu, lien).',
+  'icon'        => 'grid-view',
+  'keywords'    => ['cartes', 'services', 'valeurs', 'problématique'],
+  'twig'        => 'blocks/cards-grid.twig',
+]);
+
+// À venir (crée le Twig + le JSON, puis décommente) :
 // onzehonze_register_block(['name'=>'intro-centered','title'=>'Intro centrée','icon'=>'align-center','twig'=>'blocks/intro-centered.twig']);
-// onzehonze_register_block(['name'=>'services-grid','title'=>'Services – Grille','icon'=>'grid-view','twig'=>'blocks/services-grid.twig']);
 // onzehonze_register_block(['name'=>'steps','title'=>'Méthode – Étapes','icon'=>'editor-ol','twig'=>'blocks/steps.twig']);
-// onzehonze_register_block(['name'=>'values-grid','title'=>'Valeurs – Grille','icon'=>'heart','twig'=>'blocks/values-grid.twig']);
 // onzehonze_register_block(['name'=>'work-grid','title'=>'Réalisations','icon'=>'portfolio','twig'=>'blocks/work-grid.twig']);
 // onzehonze_register_block(['name'=>'contact-split','title'=>'Contact','icon'=>'email','twig'=>'blocks/contact-split.twig']);

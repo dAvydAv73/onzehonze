@@ -1,0 +1,53 @@
+{# views/blocks/text-image.twig
+   Layout texte + image sur 2 colonnes.
+   Texte : sous-titre, titre, description HTML, 2 CTA. Image positionnable. Fond personnalisable.
+#}
+{% set f = fields ?? {} %}
+{% set bg_color = f.bg_color|default('#ffffff') %}
+{% set tone = f.text_contrast|default('dark') %}
+{% set textClass = tone == 'light' ? 'text-white' : 'text-brand-nuit' %}
+{% set imgRight = (f.image_position|default('right')) == 'right' %}
+
+<section id="{{ block.anchor ?? block_id }}"
+         class="relative {{ block_classes }}"
+         style="background-color: {{ bg_color }};">
+  <div class="max-w-7xl mx-auto px-4 md:px-6 py-16 md:py-24">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+
+      {# Colonne texte #}
+      <div class="{{ imgRight ? 'lg:order-1' : 'lg:order-2' }} {{ textClass }}">
+        {% if f.eyebrow %}
+          <p class="text-sm font-semibold uppercase tracking-widest text-brand-rouge mb-4 js-reveal"
+             data-reveal-from="left">{{ f.eyebrow }}</p>
+        {% endif %}
+
+        {% if f.title %}
+          <h2 class="text-3xl md:text-4xl font-semibold leading-tight mb-6 js-reveal"
+              data-reveal-from="left" data-reveal-delay="0.05">{{ f.title }}</h2>
+        {% endif %}
+
+        {% if f.description %}
+          <div class="prose max-w-none {{ tone == 'light' ? 'prose-invert' : 'prose-headings:text-brand-nuit' }} mb-8 js-reveal"
+               data-reveal-from="left" data-reveal-delay="0.1">{{ f.description }}</div>
+        {% endif %}
+
+        {% if (f.cta_primary and f.cta_primary.cta_text) or (f.cta_secondary and f.cta_secondary.cta_text) %}
+          <div class="flex flex-wrap items-center gap-4 js-reveal" data-reveal-from="left" data-reveal-delay="0.15">
+            {% include 'partials/button.twig' with { cta: f.cta_primary,   variant: 'filled'  } %}
+            {% include 'partials/button.twig' with { cta: f.cta_secondary, variant: 'outline' } %}
+          </div>
+        {% endif %}
+      </div>
+
+      {# Colonne image #}
+      <div class="{{ imgRight ? 'lg:order-2' : 'lg:order-1' }}">
+        {% if f.image and f.image.url %}
+          <img src="{{ f.image.url }}" alt="{{ f.image.alt ?? '' }}"
+               class="w-full h-auto object-cover rounded-lg shadow-md js-reveal"
+               data-reveal-from="{{ imgRight ? 'right' : 'left' }}" loading="lazy" />
+        {% endif %}
+      </div>
+
+    </div>
+  </div>
+</section>

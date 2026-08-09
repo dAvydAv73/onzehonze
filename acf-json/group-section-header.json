@@ -1,0 +1,57 @@
+{
+  "key": "group_section_header",
+  "title": "Bloc – Titre de section",
+  "fields": [
+    {
+      "key": "secthead_field_eyebrow",
+      "label": "Sous-titre (eyebrow)",
+      "name": "eyebrow",
+      "type": "text",
+      "required": 0,
+      "wrapper": { "width": "50" }
+    },
+    {
+      "key": "secthead_field_bg_color",
+      "label": "Couleur de fond",
+      "name": "bg_color",
+      "type": "color_picker",
+      "default_value": "#ffffff",
+      "wrapper": { "width": "25" }
+    },
+    {
+      "key": "secthead_field_text_contrast",
+      "label": "Contraste du texte",
+      "name": "text_contrast",
+      "type": "select",
+      "choices": { "dark": "Foncé", "light": "Clair" },
+      "default_value": "dark",
+      "return_format": "value",
+      "wrapper": { "width": "25" }
+    },
+    {
+      "key": "secthead_field_title",
+      "label": "Titre",
+      "name": "title",
+      "type": "text",
+      "required": 0
+    },
+    {
+      "key": "secthead_field_description",
+      "label": "Description",
+      "name": "description",
+      "type": "wysiwyg",
+      "instructions": "Onglet « Texte » pour écrire du HTML.",
+      "tabs": "all",
+      "toolbar": "full",
+      "media_upload": 0,
+      "required": 0
+    }
+  ],
+  "location": [
+    [ { "param": "block", "operator": "==", "value": "acf/section-header" } ]
+  ],
+  "active": true,
+  "description": "Sous-titre + titre + description centrés, fond personnalisable.",
+  "show_in_rest": 0,
+  "modified": 1760980000
+}

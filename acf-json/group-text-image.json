@@ -1,0 +1,99 @@
+{
+  "key": "group_text_image",
+  "title": "Bloc – Texte + Image",
+  "fields": [
+    {
+      "key": "textimg_field_eyebrow",
+      "label": "Sous-titre (eyebrow)",
+      "name": "eyebrow",
+      "type": "text",
+      "required": 0,
+      "wrapper": { "width": "50" }
+    },
+    {
+      "key": "textimg_field_bg_color",
+      "label": "Couleur de fond",
+      "name": "bg_color",
+      "type": "color_picker",
+      "default_value": "#ffffff",
+      "wrapper": { "width": "25" }
+    },
+    {
+      "key": "textimg_field_text_contrast",
+      "label": "Contraste du texte",
+      "name": "text_contrast",
+      "type": "select",
+      "choices": { "dark": "Foncé", "light": "Clair" },
+      "default_value": "dark",
+      "return_format": "value",
+      "wrapper": { "width": "25" }
+    },
+    {
+      "key": "textimg_field_title",
+      "label": "Titre",
+      "name": "title",
+      "type": "text",
+      "required": 0
+    },
+    {
+      "key": "textimg_field_description",
+      "label": "Description",
+      "name": "description",
+      "type": "wysiwyg",
+      "instructions": "Onglet « Texte » pour écrire du HTML.",
+      "tabs": "all",
+      "toolbar": "full",
+      "media_upload": 0,
+      "required": 0
+    },
+    {
+      "key": "textimg_field_image",
+      "label": "Image",
+      "name": "image",
+      "type": "image",
+      "return_format": "array",
+      "preview_size": "medium",
+      "required": 0,
+      "wrapper": { "width": "60" }
+    },
+    {
+      "key": "textimg_field_image_position",
+      "label": "Position de l’image",
+      "name": "image_position",
+      "type": "button_group",
+      "choices": { "left": "Gauche", "right": "Droite" },
+      "default_value": "right",
+      "return_format": "value",
+      "wrapper": { "width": "40" }
+    },
+    {
+      "key": "textimg_field_cta_primary",
+      "label": "CTA principal",
+      "name": "cta_primary",
+      "type": "clone",
+      "clone": [ "group_cta" ],
+      "display": "group",
+      "layout": "block",
+      "prefix_name": 1,
+      "required": 0
+    },
+    {
+      "key": "textimg_field_cta_secondary",
+      "label": "CTA secondaire",
+      "name": "cta_secondary",
+      "type": "clone",
+      "clone": [ "group_cta" ],
+      "display": "group",
+      "layout": "block",
+      "prefix_name": 1,
+      "required": 0
+    }
+  ],
+  "location": [
+    [ { "param": "block", "operator": "==", "value": "acf/text-image" } ]
+  ],
+  "active": true,
+  "description": "Sous-titre, titre, description HTML, 2 CTA, image positionnable, fond personnalisable.",
+  "show_in_rest": 0,
+  "modified": 1760980000
+}

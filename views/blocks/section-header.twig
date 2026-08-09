@@ -1,0 +1,32 @@
+{# views/blocks/section-header.twig
+   Titre de section : sous-titre + titre + description, centrés.
+   Styles alignés sur le hero (eyebrow rouge, titre nuit, filet rouge). Fond personnalisable.
+#}
+{% set f = fields ?? {} %}
+{% set bg_color = f.bg_color|default('#ffffff') %}
+{% set tone = f.text_contrast|default('dark') %}
+{% set textClass = tone == 'light' ? 'text-white' : 'text-brand-nuit' %}
+
+<section id="{{ block.anchor ?? block_id }}"
+         class="relative {{ block_classes }}"
+         style="background-color: {{ bg_color }};">
+  <div class="max-w-3xl mx-auto px-4 md:px-6 py-16 md:py-24 text-center {{ textClass }}">
+
+    {% if f.eyebrow %}
+      <p class="text-sm font-semibold uppercase tracking-widest text-brand-rouge mb-4 js-reveal"
+         data-reveal-from="up">{{ f.eyebrow }}</p>
+    {% endif %}
+
+    {% if f.title %}
+      <h2 class="text-4xl md:text-5xl font-semibold leading-tight js-reveal"
+          data-reveal-from="up" data-reveal-delay="0.05">{{ f.title }}</h2>
+      <div class="w-12 h-0.5 bg-brand-rouge mx-auto mt-5 mb-8"></div>
+    {% endif %}
+
+    {% if f.description %}
+      <div class="prose max-w-none mx-auto {{ tone == 'light' ? 'prose-invert' : 'prose-headings:text-brand-nuit' }} js-reveal"
+           data-reveal-from="up" data-reveal-delay="0.1">{{ f.description }}</div>
+    {% endif %}
+
+  </div>
+</section>

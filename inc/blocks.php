@@ -79,6 +79,23 @@ onzehonze_register_block([
   'keywords'    => ['cartes', 'services', 'valeurs', 'problématique'],
   'twig'        => 'blocks/cards-grid.twig',
 ]);
+onzehonze_register_block([
+  'name'        => 'section-header',
+  'title'       => 'Titre de section',
+  'description' => 'Sous-titre + titre + description centrés, fond personnalisable.',
+  'icon'        => 'align-center',
+  'keywords'    => ['titre', 'intro', 'header'],
+  'twig'        => 'blocks/section-header.twig',
+]);
+
+onzehonze_register_block([
+  'name'        => 'text-image',
+  'title'       => 'Texte + Image',
+  'description' => 'Sous-titre, titre, description HTML, 2 CTA, image, fond personnalisable.',
+  'icon'        => 'align-pull-left',
+  'keywords'    => ['texte', 'image', 'split'],
+  'twig'        => 'blocks/text-image.twig',
+]);
 
 // À venir (crée le Twig + le JSON, puis décommente) :
 // onzehonze_register_block(['name'=>'intro-centered','title'=>'Intro centrée','icon'=>'align-center','twig'=>'blocks/intro-centered.twig']);

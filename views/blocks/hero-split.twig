@@ -57,7 +57,7 @@
           {% for item in f.hero_items %}
             <div class="flex items-center gap-2 text-sm font-medium {{ textClass }}">
               {% if item.icon %}{{ ui.icon(item.icon, 'w-5 h-5 text-brand-rouge shrink-0') }}{% endif %}
-              <span>{{ item.text }}</span>
+              <span class="uppercase">{{ item.text }}</span>
             </div>
           {% endfor %}
         </div>

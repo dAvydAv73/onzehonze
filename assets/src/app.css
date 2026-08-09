@@ -3,8 +3,14 @@
 @tailwind utilities;
 
 /* --------------------------------------------------------------------------
-   Animations légères — pilotées par assets/js/reveal.js (IntersectionObserver)
-   Réutilise les attributs data-reveal-* (compatibles avec le hero-split).
+   CLASSES ÉDITEUR — utilisables dans le WYSIWYG (onglet Texte/HTML).
+   Vraies règles CSS (jamais purgées), contrairement aux classes Tailwind.
+   -------------------------------------------------------------------------- */
+.corail-color { color: #D66049; }
+.nuit-color   { color: #2E3F4C; }
+
+/* --------------------------------------------------------------------------
+   Animations légères — IntersectionObserver (reveal.js)
    -------------------------------------------------------------------------- */
 @layer utilities {
   .js-reveal {
@@ -22,7 +28,6 @@
     transform: translate(0, 0);
   }
 
-  /* Respecte les préférences d'accessibilité : aucun mouvement imposé */
   @media (prefers-reduced-motion: reduce) {
     .js-reveal {
       opacity: 1 !important;

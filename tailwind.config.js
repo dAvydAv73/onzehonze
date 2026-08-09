@@ -24,8 +24,7 @@ module.exports = {
         },
       },
       fontFamily: {
-        // Remplace par les fonts de la charte quand tu les as
-        sans: ['system-ui', 'sans-serif'],
+        sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
       },
     },
   },

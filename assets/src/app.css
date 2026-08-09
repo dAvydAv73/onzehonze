@@ -8,6 +8,19 @@
    -------------------------------------------------------------------------- */
 .corail-color { color: #D66049; }
 .nuit-color   { color: #2E3F4C; }
+.nuit-clair   { color: #64748B; } /* nuit éclairci, pour "votre guide" */
+
+/* Titre H2 dans le hero : même taille que le H1, plus gras, sans marge.
+   Scopé sous .prose pour passer devant la typo automatique de @tailwindcss/typography. */
+.prose h2.hero-titre {
+  font-size: 2.25rem;   /* = text-4xl (comme le H1 en mobile) */
+  line-height: 1.1;
+  font-weight: 700;     /* plus bold que le H1 qui est en 600 */
+  margin: 0;            /* sans marge dans la zone hero */
+}
+@media (min-width: 768px) {
+  .prose h2.hero-titre { font-size: 3rem; } /* = md:text-5xl (comme le H1 en desktop) */
+}
 
 /* --------------------------------------------------------------------------
    Animations légères — IntersectionObserver (reveal.js)

@@ -1,0 +1,22 @@
+{#
+  Icône de marque Onzehonze (bi-colore, SVG maison de Camille).
+  Différent de icon.twig (Heroicons monochromes) : ces icônes ont deux teintes
+  pilotées par les variables CSS --oh-icon (trait principal) et --oh-accent (détail).
+
+  Usage :
+    {% import 'partials/brand-icon.twig' as brand %}
+    {{ brand.icon('strategie', 'w-12 h-12') }}
+
+  Le fichier SVG est lu depuis assets/icons/<name>.svg et injecté inline,
+  pour que les couleurs héritent des variables définies dans app.css.
+  Icônes dispo : strategie, audit, analyse, planification, acquisition, contenus,
+  reseaux-sociaux, visibilite, sur-mesure, pack, collaboration, contact, formation,
+  newsletter, besoin-strategie, besoin-visibilite, besoin-contenus, etape-1..4.
+#}
+{% macro icon(name, class) %}
+  {% set path = 'assets/icons/' ~ name ~ '.svg' %}
+  {% set svg = source(path, ignore_missing = true) %}
+  {% if svg %}
+    <span class="onze-icon inline-block {{ class|default('w-10 h-10') }}">{{ svg|raw }}</span>
+  {% endif %}
+{% endmacro %}

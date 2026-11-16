@@ -13,8 +13,8 @@ function onzehonze_asset_ver($rel) {
   return file_exists($path) ? filemtime($path) : '1.0.0';
 }
 
-// URL Google Fonts (Plus Jakarta Sans). Pour changer de police, édite cette ligne.
-const ONZEHONZE_FONTS_URL = 'https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap';
+// Google Fonts : DM Sans (corps) + Nunito (titres). Pour changer de police, édite cette ligne.
+const ONZEHONZE_FONTS_URL = 'https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Nunito:wght@700;800&display=swap';
 
 add_action('wp_enqueue_scripts', function () {
   wp_enqueue_style('onzehonze/fonts', ONZEHONZE_FONTS_URL, [], null);

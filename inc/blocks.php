@@ -27,7 +27,7 @@ function onzehonze_register_block(array $args) {
 
     $base = [
       'category'       => 'onzehonze',
-      'mode'           => 'preview',
+      'mode' => 'edit',
       'supports'       => ['align' => ['wide', 'full'], 'anchor' => true, 'jsx' => true],
       'enqueue_assets' => 'onzehonze_enqueue_block_assets',
       'render_callback'=> function ($block, $content = '', $is_preview = false, $post_id = 0) use ($twig, $label) {
@@ -97,8 +97,47 @@ onzehonze_register_block([
   'twig'        => 'blocks/text-image.twig',
 ]);
 
-// À venir (crée le Twig + le JSON, puis décommente) :
-// onzehonze_register_block(['name'=>'intro-centered','title'=>'Intro centrée','icon'=>'align-center','twig'=>'blocks/intro-centered.twig']);
-// onzehonze_register_block(['name'=>'steps','title'=>'Méthode – Étapes','icon'=>'editor-ol','twig'=>'blocks/steps.twig']);
-// onzehonze_register_block(['name'=>'work-grid','title'=>'Réalisations','icon'=>'portfolio','twig'=>'blocks/work-grid.twig']);
-// onzehonze_register_block(['name'=>'contact-split','title'=>'Contact','icon'=>'email','twig'=>'blocks/contact-split.twig']);
+onzehonze_register_block([
+  'name'        => 'steps',
+  'title'       => 'Méthode / Étapes',
+  'description' => 'En-tête + étapes numérotées (icône de marque, titre, texte).',
+  'icon'        => 'editor-ol',
+  'keywords'    => ['étapes', 'parcours', 'méthode'],
+  'twig'        => 'blocks/steps.twig',
+]);
+
+onzehonze_register_block([
+  'name'        => 'offres',
+  'title'       => 'Offres / Formats',
+  'description' => 'En-tête + cartes d’offre (icône, titre, sous-titre, texte, puces, lien).',
+  'icon'        => 'cart',
+  'keywords'    => ['offres', 'packs', 'formats', 'pricing'],
+  'twig'        => 'blocks/offres.twig',
+]);
+
+onzehonze_register_block([
+  'name'        => 'faq',
+  'title'       => 'FAQ',
+  'description' => 'FAQ en accordéon natif (en-tête + questions/réponses).',
+  'icon'        => 'editor-help',
+  'keywords'    => ['faq', 'questions'],
+  'twig'        => 'blocks/faq.twig',
+]);
+
+onzehonze_register_block([
+  'name'        => 'contact',
+  'title'       => 'Contact',
+  'description' => 'Contact : texte + e-mail à gauche, formulaire (shortcode) à droite.',
+  'icon'        => 'email',
+  'keywords'    => ['contact', 'formulaire'],
+  'twig'        => 'blocks/contact.twig',
+]);
+
+onzehonze_register_block([
+  'name'        => 'situations',
+  'title'       => 'Situations (bande)',
+  'description' => 'Bande orange : titre + intro + 3 situations en colonnes à filets.',
+  'icon'        => 'columns',
+  'keywords'    => ['situations', 'bande', 'colonnes'],
+  'twig'        => 'blocks/situations.twig',
+]);

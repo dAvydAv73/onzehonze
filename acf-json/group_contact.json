@@ -1,0 +1,75 @@
+{
+  "key": "group_contact",
+  "title": "Bloc – Contact",
+  "fields": [
+    {
+      "key": "contact_field_eyebrow",
+      "label": "Sous-titre (eyebrow)",
+      "name": "eyebrow",
+      "type": "text",
+      "required": 0,
+      "default_value": "UN PREMIER ÉCHANGE SUFFIT",
+      "wrapper": { "width": "50" }
+    },
+    {
+      "key": "contact_field_bg_color",
+      "label": "Couleur de fond",
+      "name": "bg_color",
+      "type": "color_picker",
+      "default_value": "#18242E",
+      "wrapper": { "width": "25" }
+    },
+    {
+      "key": "contact_field_text_contrast",
+      "label": "Contraste du texte",
+      "name": "text_contrast",
+      "type": "select",
+      "choices": { "dark": "Foncé", "light": "Clair" },
+      "default_value": "light",
+      "return_format": "value",
+      "wrapper": { "width": "25" }
+    },
+    {
+      "key": "contact_field_title",
+      "label": "Titre",
+      "name": "title",
+      "type": "text",
+      "required": 0,
+      "default_value": "Où en est votre communication aujourd’hui ?"
+    },
+    {
+      "key": "contact_field_intro",
+      "label": "Introduction",
+      "name": "intro",
+      "type": "textarea",
+      "rows": 3,
+      "new_lines": "",
+      "required": 0,
+      "default_value": "Parlez-moi de votre activité et de ce qui vous bloque actuellement. Je vous répondrai pour voir comment je peux vous aider."
+    },
+    {
+      "key": "contact_field_email",
+      "label": "E-mail de contact",
+      "name": "email",
+      "type": "email",
+      "required": 0,
+      "wrapper": { "width": "50" }
+    },
+    {
+      "key": "contact_field_form_shortcode",
+      "label": "Shortcode du formulaire",
+      "name": "form_shortcode",
+      "type": "text",
+      "instructions": "Collez le shortcode de votre formulaire (Contact Form 7, Fluent Forms, Gravity Forms…). Laissez vide pour afficher le formulaire de démonstration.",
+      "required": 0,
+      "wrapper": { "width": "50" }
+    }
+  ],
+  "location": [
+    [ { "param": "block", "operator": "==", "value": "acf/contact" } ]
+  ],
+  "active": true,
+  "description": "Contact : texte + e-mail à gauche, formulaire (shortcode) à droite.",
+  "show_in_rest": 0,
+  "modified": 1763000000
+}

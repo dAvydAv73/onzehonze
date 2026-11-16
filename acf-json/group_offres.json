@@ -1,0 +1,131 @@
+{
+  "key": "group_offres",
+  "title": "Bloc – Offres / Formats",
+  "fields": [
+    {
+      "key": "offres_field_eyebrow",
+      "label": "Sous-titre (eyebrow)",
+      "name": "eyebrow",
+      "type": "text",
+      "required": 0,
+      "default_value": "DEUX FAÇONS DE TRAVAILLER ENSEMBLE",
+      "wrapper": { "width": "50" }
+    },
+    {
+      "key": "offres_field_bg_color",
+      "label": "Couleur de fond",
+      "name": "bg_color",
+      "type": "color_picker",
+      "default_value": "#FAEAD6",
+      "wrapper": { "width": "25" }
+    },
+    {
+      "key": "offres_field_columns",
+      "label": "Colonnes",
+      "name": "columns",
+      "type": "select",
+      "choices": { "2": "2", "3": "3" },
+      "default_value": "2",
+      "return_format": "value",
+      "wrapper": { "width": "25" }
+    },
+    {
+      "key": "offres_field_title",
+      "label": "Titre",
+      "name": "title",
+      "type": "text",
+      "required": 0,
+      "default_value": "Choisissez le cadre qui correspond à votre besoin."
+    },
+    {
+      "key": "offres_field_intro",
+      "label": "Introduction",
+      "name": "intro",
+      "type": "textarea",
+      "rows": 2,
+      "new_lines": "",
+      "required": 0,
+      "default_value": "Pour avancer sur un sujet précis, vous pouvez choisir un pack. Si votre situation demande plus de souplesse, je construis un accompagnement à la carte avec vous."
+    },
+    {
+      "key": "offres_field_offers",
+      "label": "Offres",
+      "name": "offers",
+      "type": "repeater",
+      "layout": "block",
+      "min": 0,
+      "button_label": "Ajouter une offre",
+      "sub_fields": [
+        {
+          "key": "offres_field_offer_icon",
+          "label": "Icône",
+          "name": "icon",
+          "type": "select",
+          "ui": 1,
+          "allow_null": 1,
+          "return_format": "value",
+          "choices": {
+            "pack": "Pack",
+            "sur-mesure": "Sur-mesure",
+            "strategie": "Stratégie",
+            "audit": "Audit",
+            "planification": "Planification",
+            "collaboration": "Collaboration"
+          },
+          "wrapper": { "width": "40" }
+        },
+        {
+          "key": "offres_field_offer_title",
+          "label": "Titre",
+          "name": "title",
+          "type": "text",
+          "wrapper": { "width": "60" }
+        },
+        {
+          "key": "offres_field_offer_subtitle",
+          "label": "Sous-titre",
+          "name": "subtitle",
+          "type": "text"
+        },
+        {
+          "key": "offres_field_offer_text",
+          "label": "Texte",
+          "name": "text",
+          "type": "textarea",
+          "rows": 2,
+          "new_lines": ""
+        },
+        {
+          "key": "offres_field_offer_bullets",
+          "label": "Puces",
+          "name": "bullets",
+          "type": "repeater",
+          "layout": "table",
+          "button_label": "Ajouter une puce",
+          "sub_fields": [
+            {
+              "key": "offres_field_bullet_text",
+              "label": "Texte",
+              "name": "text",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "key": "offres_field_offer_link",
+          "label": "Lien (optionnel)",
+          "name": "link",
+          "type": "link",
+          "return_format": "array"
+        }
+      ]
+    }
+  ],
+  "location": [
+    [ { "param": "block", "operator": "==", "value": "acf/offres" } ]
+  ],
+  "active": true,
+  "description": "En-tête + cartes d'offre (icône, titre, sous-titre, texte, puces, lien).",
+  "show_in_rest": 0,
+  "modified": 1763000000
+}

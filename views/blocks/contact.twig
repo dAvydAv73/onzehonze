@@ -1,0 +1,66 @@
+{# views/blocks/contact.twig
+   Contact : texte + e-mail à gauche, formulaire à droite.
+   Le formulaire vient d'un shortcode (CF7 / Fluent Forms / Gravity…). À défaut,
+   un formulaire de démonstration non fonctionnel est affiché. Contenu repris du kit Camille.
+#}
+{% set f = fields ?? {} %}
+{% set bg_color = f.bg_color|default('#18242E') %}
+{% set tone = f.text_contrast|default('light') %}
+{% set textClass = tone == 'light' ? 'text-white' : 'text-brand-nuit' %}
+
+<section id="{{ block.anchor ?? block_id }}"
+         class="relative {{ block_classes }}"
+         style="background-color: {{ bg_color }};">
+  <div class="max-w-7xl mx-auto px-4 md:px-6 py-16 md:py-24">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+
+      {# Colonne texte #}
+      <div class="{{ textClass }} js-reveal" data-reveal-from="left">
+        {% if f.eyebrow %}
+          <p class="text-sm font-semibold uppercase tracking-widest text-brand-rouge mb-4">{{ f.eyebrow }}</p>
+        {% endif %}
+        {% if f.title %}
+          <h2 class="text-3xl md:text-4xl font-semibold leading-tight mb-4">{{ f.title }}</h2>
+        {% endif %}
+        {% if f.intro %}
+          <p class="{{ tone == 'light' ? 'text-white/80' : 'text-brand-text' }} mb-6">{{ f.intro }}</p>
+        {% endif %}
+        {% if f.email %}
+          <a href="mailto:{{ f.email }}" class="inline-block text-lg font-semibold text-brand-rouge hover:underline">
+            {{ f.email }}
+          </a>
+        {% endif %}
+      </div>
+
+      {# Colonne formulaire #}
+      <div class="bg-white rounded-lg p-6 md:p-8 shadow-md js-reveal" data-reveal-from="right" data-reveal-delay="0.05">
+        {% if f.form_shortcode %}
+          {{ function('do_shortcode', f.form_shortcode) }}
+        {% else %}
+          <form class="space-y-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <label class="block text-sm font-medium text-brand-nuit">Votre nom
+                <input type="text" class="mt-1 w-full rounded-sm border border-neutral-300 px-3 py-2 text-sm" autocomplete="name">
+              </label>
+              <label class="block text-sm font-medium text-brand-nuit">Votre e-mail
+                <input type="email" class="mt-1 w-full rounded-sm border border-neutral-300 px-3 py-2 text-sm" autocomplete="email">
+              </label>
+            </div>
+            <label class="block text-sm font-medium text-brand-nuit">Votre entreprise
+              <input type="text" class="mt-1 w-full rounded-sm border border-neutral-300 px-3 py-2 text-sm" autocomplete="organization">
+            </label>
+            <label class="block text-sm font-medium text-brand-nuit">Ce que vous aimeriez améliorer
+              <textarea rows="5" class="mt-1 w-full rounded-sm border border-neutral-300 px-3 py-2 text-sm"></textarea>
+            </label>
+            <button type="submit"
+                    class="inline-flex items-center gap-2 rounded-sm px-6 py-3 text-sm font-semibold bg-brand-rouge text-white hover:bg-brand-nuit transition-colors">
+              Envoyer ma demande <span aria-hidden="true">→</span>
+            </button>
+            <p class="text-xs text-neutral-500">Formulaire de démonstration. Ajoutez un shortcode (CF7, Fluent Forms…) dans le champ du bloc pour le rendre fonctionnel.</p>
+          </form>
+        {% endif %}
+      </div>
+
+    </div>
+  </div>
+</section>

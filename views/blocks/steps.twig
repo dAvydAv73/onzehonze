@@ -1,0 +1,54 @@
+{# views/blocks/steps.twig
+   Méthode / Parcours : en-tête + étapes numérotées (icône de marque + numéro + titre + texte).
+   Desktop : ligne horizontale ; mobile : empilé. Contenu repris du kit « parcours / déroulé » de Camille.
+#}
+{% set f = fields ?? {} %}
+{% import 'partials/brand-icon.twig' as brand %}
+
+{% set bg_color = f.bg_color|default('#FFFDF9') %}
+{% set tone = f.text_contrast|default('dark') %}
+{% set textClass = tone == 'light' ? 'text-white' : 'text-brand-nuit' %}
+
+<section id="{{ block.anchor ?? block_id }}"
+         class="relative {{ block_classes }}"
+         style="background-color: {{ bg_color }};">
+  <div class="max-w-7xl mx-auto px-4 md:px-6 py-16 md:py-24 {{ textClass }}">
+
+    {# En-tête #}
+    <header class="max-w-2xl mb-12 md:mb-16">
+      {% if f.eyebrow %}
+        <p class="text-sm font-semibold uppercase tracking-widest text-brand-rouge mb-4 js-reveal"
+           data-reveal-from="up">{{ f.eyebrow }}</p>
+      {% endif %}
+      {% if f.title %}
+        <h2 class="text-3xl md:text-4xl font-semibold leading-tight js-reveal"
+            data-reveal-from="up" data-reveal-delay="0.05">{{ f.title }}</h2>
+      {% endif %}
+      {% if f.intro %}
+        <p class="mt-4 text-brand-text js-reveal" data-reveal-from="up" data-reveal-delay="0.1">{{ f.intro }}</p>
+      {% endif %}
+    </header>
+
+    {# Étapes #}
+    {% if f.steps %}
+      <ol class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6">
+        {% for step in f.steps %}
+          {% set icon = step.icon ?: ('etape-' ~ loop.index) %}
+          <li class="relative js-reveal" data-reveal-from="up" data-reveal-delay="{{ (loop.index0 * 0.08)|round(2) }}">
+            <div class="flex items-center gap-3 mb-4">
+              {{ brand.icon(icon, 'w-14 h-10 shrink-0') }}
+              <span class="text-sm font-bold text-brand-rouge">{{ '%02d'|format(loop.index) }}</span>
+            </div>
+            {% if step.title %}
+              <h3 class="text-lg font-semibold text-brand-nuit mb-2">{{ step.title }}</h3>
+            {% endif %}
+            {% if step.text %}
+              <p class="text-sm text-brand-text leading-relaxed">{{ step.text }}</p>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ol>
+    {% endif %}
+
+  </div>
+</section>

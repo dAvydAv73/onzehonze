@@ -1,0 +1,105 @@
+{
+  "key": "group_steps",
+  "title": "Bloc – Méthode / Étapes",
+  "fields": [
+    {
+      "key": "steps_field_eyebrow",
+      "label": "Sous-titre (eyebrow)",
+      "name": "eyebrow",
+      "type": "text",
+      "required": 0,
+      "default_value": "UN PARCOURS CLAIR",
+      "wrapper": { "width": "50" }
+    },
+    {
+      "key": "steps_field_bg_color",
+      "label": "Couleur de fond",
+      "name": "bg_color",
+      "type": "color_picker",
+      "default_value": "#FFFDF9",
+      "wrapper": { "width": "25" }
+    },
+    {
+      "key": "steps_field_text_contrast",
+      "label": "Contraste du texte",
+      "name": "text_contrast",
+      "type": "select",
+      "choices": { "dark": "Foncé", "light": "Clair" },
+      "default_value": "dark",
+      "return_format": "value",
+      "wrapper": { "width": "25" }
+    },
+    {
+      "key": "steps_field_title",
+      "label": "Titre",
+      "name": "title",
+      "type": "text",
+      "required": 0,
+      "default_value": "Vous savez toujours quelle sera la prochaine étape."
+    },
+    {
+      "key": "steps_field_intro",
+      "label": "Introduction",
+      "name": "intro",
+      "type": "textarea",
+      "rows": 2,
+      "new_lines": "",
+      "required": 0,
+      "default_value": "Je vous explique les choix proposés et vous gardez une vision claire de l’avancée du projet."
+    },
+    {
+      "key": "steps_field_steps",
+      "label": "Étapes",
+      "name": "steps",
+      "type": "repeater",
+      "layout": "block",
+      "min": 0,
+      "max": 4,
+      "button_label": "Ajouter une étape",
+      "sub_fields": [
+        {
+          "key": "steps_field_step_icon",
+          "label": "Icône (vide = étape numérotée auto)",
+          "name": "icon",
+          "type": "select",
+          "ui": 1,
+          "allow_null": 1,
+          "return_format": "value",
+          "choices": {
+            "etape-1": "Étape 1 (montagne)",
+            "etape-2": "Étape 2 (montagne)",
+            "etape-3": "Étape 3 (montagne)",
+            "etape-4": "Étape 4 (montagne)",
+            "audit": "Audit",
+            "strategie": "Stratégie",
+            "planification": "Planification",
+            "analyse": "Analyse"
+          },
+          "wrapper": { "width": "40" }
+        },
+        {
+          "key": "steps_field_step_title",
+          "label": "Titre",
+          "name": "title",
+          "type": "text",
+          "wrapper": { "width": "60" }
+        },
+        {
+          "key": "steps_field_step_text",
+          "label": "Texte",
+          "name": "text",
+          "type": "textarea",
+          "rows": 2,
+          "new_lines": ""
+        }
+      ]
+    }
+  ],
+  "location": [
+    [ { "param": "block", "operator": "==", "value": "acf/steps" } ]
+  ],
+  "active": true,
+  "description": "En-tête + étapes numérotées (icône de marque, titre, texte).",
+  "show_in_rest": 0,
+  "modified": 1763000000
+}

@@ -7,7 +7,7 @@
    Vraies règles CSS (jamais purgées), contrairement aux classes Tailwind.
    -------------------------------------------------------------------------- */
 .corail-color { color: #D66049; }
-.nuit-color   { color: #2E3F4C; }
+.nuit-color   { color: #18242E; } /* aligné sur la charte Camille (brand.nuit) */
 .nuit-clair   { color: #64748B; } /* nuit éclairci, pour "votre guide" */
 
 /* Titre H2 dans le hero : même taille que le H1, plus gras, sans marge.
@@ -48,4 +48,55 @@
       transition: none !important;
     }
   }
+}
+
+/* --------------------------------------------------------------------------
+   Icônes de marque (partials/brand-icon.twig) — SVG bi-colore de Camille.
+   --oh-icon = trait principal, --oh-accent = détail coloré.
+   -------------------------------------------------------------------------- */
+.onze-icon {
+  --oh-icon: #18242E;   /* = brand.nuit */
+  --oh-accent: #D66049; /* = brand.rouge */
+  line-height: 0;
+}
+.onze-icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* FAQ : le « + » pivote en « × » quand la question est ouverte (bloc faq.twig) */
+details.faq-item[open] .faq-icon { transform: rotate(45deg); }
+.faq-item summary::-webkit-details-marker { display: none; }
+
+/* --------------------------------------------------------------------------
+   TYPOGRAPHIE — charte Camille
+   Corps : DM Sans (via Tailwind font-sans). Titres : Nunito 800, serrés.
+   -------------------------------------------------------------------------- */
+h1, h2, h3,
+.font-display,
+.prose :is(h1, h2, h3) {
+  font-family: "Nunito", system-ui, sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.06;
+}
+body { line-height: 1.68; }
+
+/* Eyebrow / sur-titre : corail foncé, espacé, majuscules (classe réutilisable) */
+.onze-eyebrow {
+  color: #A94332;
+  font-weight: 800;
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+/* --------------------------------------------------------------------------
+   ÉDITEUR Gutenberg uniquement : reveal.js ne tourne pas dans l'aperçu,
+   on neutralise l'animation pour voir le contenu des blocs à l'édition.
+   -------------------------------------------------------------------------- */
+.editor-styles-wrapper .js-reveal {
+  opacity: 1 !important;
+  transform: none !important;
 }

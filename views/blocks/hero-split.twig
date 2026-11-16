@@ -13,29 +13,28 @@
 {% set img = f.image ?? null %}
 
 <section id="{{ block.anchor ?? block_id }}"
-         class="relative overflow-hidden {{ block_classes }} lg:min-h-[600px] flex items-center"
+         class="relative overflow-hidden {{ block_classes }} lg:min-h-[720px] flex items-center"
          style="background-color: {{ bg_color }};">
 
   {# Image background (desktop) : moitié droite de la page, pleine hauteur #}
   {% if img and img.url %}
-    <div class="hidden lg:block absolute inset-y-0 right-0 w-1/2 bg-cover bg-center"
-         style="background-image: url('{{ img.url }}');" role="img"
+    <div class="hidden lg:block absolute inset-y-0 right-0 w-1/2 bg-cover"
+         style="background-image: url('{{ img.url }}'); background-position: 57% center;" role="img"
          aria-label="{{ img.alt ?? '' }}"></div>
-    {# Fondu progressif : le fond (bg_color) part plein à gauche et devient transparent (…00 = alpha 0) #}
+    {# Fondu progressif façon kit : plein à gauche, fondu rapide, image dégagée dès 33% #}
     <div class="hidden lg:block absolute inset-y-0 right-0 w-1/2 pointer-events-none"
-         style="background-image: linear-gradient(to right, {{ bg_color }} 0%, {{ bg_color }}00 55%);"></div>
+         style="background-image: linear-gradient(90deg, {{ bg_color }} 0%, {{ bg_color }}a3 10%, transparent 33%);"></div>
   {% endif %}
 
   <div class="relative w-full max-w-7xl mx-auto px-4 md:px-6 py-16 md:py-24">
     <div class="lg:w-1/2 lg:pr-10 {{ textClass }}">
 
       {% if f.eyebrow %}
-        <p class="text-sm font-semibold uppercase tracking-widest text-brand-rouge mb-4 js-reveal"
-           data-reveal-from="left">{{ f.eyebrow }}</p>
+        <p class="onze-eyebrow mb-4 js-reveal" data-reveal-from="left">{{ f.eyebrow }}</p>
       {% endif %}
 
       {% if f.title %}
-        <h1 class="text-4xl md:text-5xl font-bold leading-tight js-reveal"
+        <h1 class="font-display text-4xl md:text-5xl lg:text-6xl js-reveal"
             data-reveal-from="left" data-reveal-delay="0.05">{{ f.title }}</h1>
       {% endif %}
 

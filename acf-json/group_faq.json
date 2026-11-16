@@ -1,0 +1,73 @@
+{
+  "key": "group_faq",
+  "title": "Bloc – FAQ",
+  "fields": [
+    {
+      "key": "faq_field_eyebrow",
+      "label": "Sous-titre (eyebrow)",
+      "name": "eyebrow",
+      "type": "text",
+      "required": 0,
+      "default_value": "QUESTIONS FRÉQUENTES",
+      "wrapper": { "width": "60" }
+    },
+    {
+      "key": "faq_field_bg_color",
+      "label": "Couleur de fond",
+      "name": "bg_color",
+      "type": "color_picker",
+      "default_value": "#ffffff",
+      "wrapper": { "width": "40" }
+    },
+    {
+      "key": "faq_field_title",
+      "label": "Titre",
+      "name": "title",
+      "type": "text",
+      "required": 0,
+      "default_value": "Conseil et stratégie de communication"
+    },
+    {
+      "key": "faq_field_intro",
+      "label": "Introduction",
+      "name": "intro",
+      "type": "textarea",
+      "rows": 2,
+      "new_lines": "",
+      "required": 0,
+      "default_value": "Les réponses aux questions les plus courantes avant de définir le périmètre d’une mission."
+    },
+    {
+      "key": "faq_field_items",
+      "label": "Questions / Réponses",
+      "name": "items",
+      "type": "repeater",
+      "layout": "block",
+      "min": 0,
+      "button_label": "Ajouter une question",
+      "sub_fields": [
+        {
+          "key": "faq_field_item_question",
+          "label": "Question",
+          "name": "question",
+          "type": "text"
+        },
+        {
+          "key": "faq_field_item_answer",
+          "label": "Réponse",
+          "name": "answer",
+          "type": "textarea",
+          "rows": 3,
+          "new_lines": ""
+        }
+      ]
+    }
+  ],
+  "location": [
+    [ { "param": "block", "operator": "==", "value": "acf/faq" } ]
+  ],
+  "active": true,
+  "description": "FAQ en accordéon natif (en-tête + questions/réponses).",
+  "show_in_rest": 0,
+  "modified": 1763000000
+}

@@ -1,0 +1,90 @@
+{# views/blocks/offres.twig
+   Offres / Formats : en-tête + cartes d'offre (icône, numéro, titre, sous-titre, texte, puces, lien).
+   Sert pour « Deux façons de travailler » (home) ou « Formats d'accompagnement » (conseil).
+#}
+{% set f = fields ?? {} %}
+{% import 'partials/brand-icon.twig' as brand %}
+
+{% set bg_color = f.bg_color|default('#FAEAD6') %}
+{% set cols = f.columns|default('2') %}
+{% set colClass = { '2':'lg:grid-cols-2', '3':'lg:grid-cols-3' }[cols]|default('lg:grid-cols-2') %}
+
+<section id="{{ block.anchor ?? block_id }}"
+         class="relative {{ block_classes }}"
+         style="background-color: {{ bg_color }};">
+  <div class="max-w-7xl mx-auto px-4 md:px-6 py-16 md:py-24">
+
+    {# En-tête #}
+    <header class="max-w-2xl mb-12">
+      {% if f.eyebrow %}
+        <p class="text-sm font-semibold uppercase tracking-widest text-brand-rouge mb-4 js-reveal"
+           data-reveal-from="up">{{ f.eyebrow }}</p>
+      {% endif %}
+      {% if f.title %}
+        <h2 class="text-3xl md:text-4xl font-semibold leading-tight text-brand-nuit js-reveal"
+            data-reveal-from="up" data-reveal-delay="0.05">{{ f.title }}</h2>
+      {% endif %}
+      {% if f.intro %}
+        <p class="mt-4 text-brand-text js-reveal" data-reveal-from="up" data-reveal-delay="0.1">{{ f.intro }}</p>
+      {% endif %}
+    </header>
+
+    {# Cartes d'offre #}
+    {% if f.offers %}
+      <div class="grid grid-cols-1 {{ colClass }} gap-6">
+        {% for offer in f.offers %}
+          <article class="flex flex-col bg-white border border-neutral-200 rounded-lg p-8 js-reveal"
+                   data-reveal-from="up" data-reveal-delay="{{ (loop.index0 * 0.1)|round(2) }}">
+
+            <div class="flex items-center justify-between mb-6">
+              <div class="flex items-center gap-4">
+                {% if offer.icon %}
+                  <span class="w-14 h-14 rounded-full bg-brand-beige flex items-center justify-center shrink-0">
+                    {{ brand.icon(offer.icon, 'w-8 h-8') }}
+                  </span>
+                {% endif %}
+                {% if offer.title %}
+                  <h3 class="text-xl font-semibold text-brand-nuit">{{ offer.title }}</h3>
+                {% endif %}
+              </div>
+              <span class="text-2xl font-bold text-brand-beige">{{ '%02d'|format(loop.index) }}</span>
+            </div>
+
+            {% if offer.subtitle %}
+              <p class="font-medium text-brand-nuit mb-2">{{ offer.subtitle }}</p>
+            {% endif %}
+            {% if offer.text %}
+              <p class="text-sm text-brand-text leading-relaxed mb-5">{{ offer.text }}</p>
+            {% endif %}
+
+            {% if offer.bullets %}
+              <ul class="space-y-2 mb-6">
+                {% for b in offer.bullets %}
+                  <li class="flex items-start gap-2 text-sm text-brand-text">
+                    <svg class="w-4 h-4 mt-0.5 text-brand-rouge shrink-0" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>{{ b.text }}</span>
+                  </li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+
+            {% if offer.link and offer.link.url %}
+              <a href="{{ offer.link.url }}"
+                 {% if offer.link.target %}target="{{ offer.link.target }}" rel="noopener noreferrer"{% endif %}
+                 class="mt-auto inline-flex items-center gap-1 text-sm font-semibold text-brand-rouge hover:text-brand-nuit transition-colors">
+                {{ offer.link.title ?: 'En savoir plus' }}
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+            {% endif %}
+
+          </article>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+  </div>
+</section>

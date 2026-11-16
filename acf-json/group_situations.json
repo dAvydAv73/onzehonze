@@ -1,0 +1,74 @@
+{
+  "key": "group_situations",
+  "title": "Bloc – Situations (bande)",
+  "fields": [
+    {
+      "key": "situations_field_eyebrow",
+      "label": "Sous-titre (eyebrow)",
+      "name": "eyebrow",
+      "type": "text",
+      "required": 0,
+      "default_value": "UNE STRATÉGIE À CHAQUE ÉTAPE",
+      "wrapper": { "width": "60" }
+    },
+    {
+      "key": "situations_field_bg_color",
+      "label": "Couleur de fond",
+      "name": "bg_color",
+      "type": "color_picker",
+      "default_value": "#F7B449",
+      "wrapper": { "width": "40" }
+    },
+    {
+      "key": "situations_field_title",
+      "label": "Titre",
+      "name": "title",
+      "type": "text",
+      "required": 0,
+      "default_value": "Votre communication doit refléter votre entreprise et la direction que vous lui donnez."
+    },
+    {
+      "key": "situations_field_intro",
+      "label": "Introduction",
+      "name": "intro",
+      "type": "textarea",
+      "rows": 3,
+      "new_lines": "",
+      "required": 0,
+      "default_value": "Une stratégie de communication n’est pas réservée aux grandes entreprises. Elle aide à garder un cap au quotidien et devient essentielle lorsque votre activité évolue, que votre offre change ou que votre communication ne vous ressemble plus."
+    },
+    {
+      "key": "situations_field_items",
+      "label": "Situations (3)",
+      "name": "items",
+      "type": "repeater",
+      "layout": "block",
+      "min": 0,
+      "max": 3,
+      "button_label": "Ajouter une situation",
+      "sub_fields": [
+        {
+          "key": "situations_field_item_title",
+          "label": "Titre",
+          "name": "title",
+          "type": "text"
+        },
+        {
+          "key": "situations_field_item_text",
+          "label": "Texte",
+          "name": "text",
+          "type": "textarea",
+          "rows": 3,
+          "new_lines": ""
+        }
+      ]
+    }
+  ],
+  "location": [
+    [ { "param": "block", "operator": "==", "value": "acf/situations" } ]
+  ],
+  "active": true,
+  "description": "Bande orange : titre + intro + 3 situations en colonnes à filets.",
+  "show_in_rest": 0,
+  "modified": 1763330000
+}
